@@ -31,7 +31,7 @@ private MediaPlayer mediaPlayer;
             @Override
             public void onPrepared(MediaPlayer mp) {
                 Toast.makeText(MainActivity.this, "Ready to play", Toast.LENGTH_SHORT).show();
-                mp.start();
+//                mp.start();
                 seekBar= findViewById(R.id.seekBar);
                 seekBar.setMax(mediaPlayer.getDuration());
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

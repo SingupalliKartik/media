@@ -20,6 +20,7 @@ private    MediaPlayer mediaPlayer;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        Toast.makeText(this, "Wait till the music loads", Toast.LENGTH_SHORT).show();
 
         Button play = findViewById(R.id.button);
         Button pause = findViewById(R.id.button2);
@@ -35,7 +36,7 @@ private    MediaPlayer mediaPlayer;
             @Override
             public void onPrepared(MediaPlayer mp) {
                 Toast.makeText(MainActivity2.this, "Ready to play", Toast.LENGTH_SHORT).show();
-                    mp.start();
+//                    mp.start();
                     seekBar= findViewById(R.id.seekBar);
                 seekBar.setMax(mediaPlayer.getDuration());
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
