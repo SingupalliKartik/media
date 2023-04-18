@@ -11,13 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 private Button play;
 private Button pause;
 public SeekBar seekBar;
 
-private MediaPlayer mediaplayer;
+private MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,42 +26,46 @@ private MediaPlayer mediaplayer;
 
         play= findViewById(R.id.button);
         pause= findViewById(R.id.button2);
-        mediaplayer = MediaPlayer.create(this,R.raw.music);
-//Uri uri = Uri.parse("R.raw.music");
-//        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-//        mmr.setDataSource(this, uri);
-//        String str = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-//            int mili = Integer.parseInt(str);
-//        seekBar.setMax(mediaPlayer.getDuration());
-//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                if (fromUser){
-//                    mediaplayer.seekTo(progress);
-//                }
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
+        mediaPlayer = MediaPlayer.create(this,R.raw.music);
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                Toast.makeText(MainActivity.this, "Ready to play", Toast.LENGTH_SHORT).show();
+                mp.start();
+                seekBar= findViewById(R.id.seekBar);
+                seekBar.setMax(mediaPlayer.getDuration());
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        if (fromUser){
+                            mediaPlayer.seekTo(progress);
+                        }
+
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+            }
+        });
 //        mediaplayer.start();
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaplayer.start();
+                mediaPlayer.start();
             }
         });
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaplayer.pause();
+                mediaPlayer.pause();
             }
         });
 

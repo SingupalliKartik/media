@@ -36,26 +36,27 @@ private    MediaPlayer mediaPlayer;
             public void onPrepared(MediaPlayer mp) {
                 Toast.makeText(MainActivity2.this, "Ready to play", Toast.LENGTH_SHORT).show();
                     mp.start();
-//                seekBar.setMax(mediaPlayer.getDuration());
-//                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//                    @Override
-//                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                        if (fromUser){
-//                            mediaPlayer.seekTo(progress);
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//                    }
-//                });
+                    seekBar= findViewById(R.id.seekBar);
+                seekBar.setMax(mediaPlayer.getDuration());
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        if (fromUser){
+                            mediaPlayer.seekTo(progress);
+                        }
+
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
             }
         });
         mediaPlayer.prepareAsync();
