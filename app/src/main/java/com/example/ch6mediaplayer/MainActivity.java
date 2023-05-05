@@ -3,13 +3,10 @@ package com.example.ch6mediaplayer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -24,8 +21,8 @@ private MediaPlayer mediaPlayer;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        play= findViewById(R.id.button);
-        pause= findViewById(R.id.button2);
+        play= findViewById(R.id.som);
+        pause= findViewById(R.id.sum1);
         mediaPlayer = MediaPlayer.create(this,R.raw.music);
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -74,5 +71,6 @@ private MediaPlayer mediaPlayer;
     public void  openAct(View view){
         Intent intent = new Intent(this, MainActivity2.class);
         startActivity(intent);
+        mediaPlayer.stop();
     }
 }
